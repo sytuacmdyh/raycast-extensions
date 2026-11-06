@@ -1,0 +1,26 @@
+{
+  "name": "personal-raycast-extensions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Windows 与 macOS 自定义 Raycast 扩展工作区",
+  "engines": {
+    "node": ">=22.22.2"
+  },
+  "workspaces": [
+    "extensions/*"
+  ],
+  "scripts": {
+    "new": "node scripts/new-extension.mjs",
+    "list": "node scripts/list.mjs",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "lint": "npm run lint --workspaces",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run build && npm run typecheck && npm run lint && npm run format:check"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

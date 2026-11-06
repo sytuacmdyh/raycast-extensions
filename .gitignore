@@ -1,0 +1,32 @@
+# Dependencies and local npm cache (all workspaces)
+node_modules/
+.npm/
+
+# Build output and extension packages
+dist/
+*.rayext
+*.tsbuildinfo
+
+# Test reports, tool caches and logs
+coverage/
+.eslintcache
+*.log
+
+# Local configuration and secrets; keep the shareable example
+.env
+.env.*
+!.env.example
+
+# Editor-local files
+.idea/
+.vscode/*.local.json
+*.swp
+*.swo
+*~
+
+# macOS and Windows metadata
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
