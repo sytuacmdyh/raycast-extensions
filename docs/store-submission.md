@@ -4,7 +4,7 @@
 
 Draft PR created: https://github.com/raycast/extensions/pull/33228
 
-Submission branch: `sytuacmdyh/raycast-store-extensions:codex/add-timestamp-converter`, under `extensions/timestamp-converter/`. The Raycast author `sytuacmdyh` has passed the official manifest check. The extension has not been accepted or published to the Store. Screenshots and manual distribution-build UI verification are still pending.
+Submission branch: `sytuacmdyh/raycast-store-extensions:codex/add-timestamp-converter`, under `extensions/timestamp-converter/`. The Raycast author `sytuacmdyh` has passed the official manifest check. The extension has not been accepted or published to the Store. A user-provided Windows screenshot has been added. Manual distribution-build UI verification is still pending.
 
 ## Proposed PR title
 
@@ -22,7 +22,7 @@ The Store already has overlapping extensions, including [Unix Timestamp](https:/
 
 ### Screencast
 
-Pending: a real Raycast screenshot or recording showing the live clock and a conversion. Do not replace this with a mockup.
+A real user-provided Windows screenshot is included at `extensions/timestamp-converter/media/current-time.png`. It shows the current-time view. An aspect-preserving resize on a neutral background is included at `metadata/timestamp-converter-1.png` and passed the official 2000 × 1250 screenshot validator. A static image does not verify one-second refresh, conversions, clipboard behavior, or the latest distribution build.
 
 ### Checklist
 
@@ -30,7 +30,7 @@ Pending: a real Raycast screenshot or recording showing the live clock and a con
 - [x] I read the documentation about publishing.
 - [ ] I ran `npm run build` and tested the distribution build in Raycast. (Automated build passes; manual distribution UI verification is pending.)
 - [x] I checked that files in the `assets` folder are used by the extension itself.
-- [x] I checked that README media are correctly located. (No README media are included.)
+- [x] I checked that README media are correctly located. (The real screenshot is in `media/current-time.png`.)
 
 ## Manual verification and screenshots
 
