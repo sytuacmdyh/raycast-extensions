@@ -18,6 +18,16 @@ npm run dev -- personal-tools
 
 也可以在 Raycast 中执行 **Import Extension**，选择 `extensions/personal-tools`，而不是仓库根目录。开发模式下终端需要保持运行；停止开发监听后可通过 Import Extension 重新导入源码。
 
+## 时间戳转换
+
+已新增 `timestamp-converter`：时间戳与日期字符串互转，并每秒刷新当前本地时间、UTC、秒及毫秒时间戳。
+
+```sh
+npm run dev -- timestamp-converter
+```
+
+在 Raycast 中搜索 **时间戳转换**；详见 [使用说明](extensions/timestamp-converter/README.md)。
+
 ## 新建与管理扩展
 
 ```sh
@@ -36,7 +46,7 @@ npm run dev -- my-tool
 | `npm run build`                | 构建所有扩展到各自 `dist/`，不安装到 Raycast |
 | `npm run typecheck`            | 检查所有扩展的 TypeScript 类型               |
 | `npm run lint`                 | 使用 Raycast ESLint 配置检查源码             |
-| `npm run check`                | 构建、类型、源码 lint 和格式检查             |
+| `npm run check`                | 构建、类型、源码 lint、转换测试和格式检查    |
 | `npm run format`               | 统一格式                                     |
 
 `lint` 直接调用 ESLint，不做商店账号或发布资格校验。仓库没有自动发布脚本。GitHub Actions 已配置 Linux、Windows、macOS 检查矩阵，推送到 GitHub 后才会执行。
@@ -45,6 +55,7 @@ npm run dev -- my-tool
 
 ```text
 extensions/
+  timestamp-converter/ # 时间戳与日期互转、当前时间实时更新
   personal-tools/       # 已创建的跨平台示例：显示并复制运行环境
     src/index.tsx       # 命令入口
     assets/             # 图标等资源
