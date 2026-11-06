@@ -49,7 +49,18 @@ npm run dev -- my-tool
 | `npm run check`                | 构建、类型、源码 lint、转换测试和格式检查    |
 | `npm run format`               | 统一格式                                     |
 
-`lint` 直接调用 ESLint，不做商店账号或发布资格校验。仓库没有自动发布脚本。GitHub Actions 已配置 Linux、Windows、macOS 检查矩阵，推送到 GitHub 后才会执行。
+`lint` 直接调用 ESLint，不做商店账号或发布资格校验。GitHub Actions 已配置 Linux、Windows、macOS 检查矩阵，推送到 GitHub 后执行。
+
+## 发布 GitHub Release
+
+推送 `v主版本.次版本.修订号` 标签（如 `v0.1.0`）会触发 Release extensions 工作流：先在 Linux、Windows、macOS 上安装依赖并运行 `npm run check`，全部通过后，由 GitHub 自动创建并发布 Release，附上标签对应的源码 ZIP 和 SHA-256 校验文件。
+
+```sh
+git tag -a v0.1.0 -m "发布 v0.1.0"
+git push origin v0.1.0
+```
+
+后续版本请使用新的版本号。发布使用工作流自带的 `GITHUB_TOKEN`，无需个人访问令牌。若任一平台检查失败，则不会发布；如果上传后发布失败，可能保留草稿，应先检查工作流日志和草稿再重试。源码包需要在本机导入 Raycast，不会自动上架 Raycast Store。
 
 ## 目录
 

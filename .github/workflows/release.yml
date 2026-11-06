@@ -1,0 +1,83 @@
+name: Release extensions
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Build and check (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  release:
+    name: Publish GitHub Release
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package tagged source
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Release tags must use vMAJOR.MINOR.PATCH"
+            exit 1
+          fi
+          mkdir -p release
+          git archive --format=zip --prefix="raycast-extensions-${RELEASE_TAG}/" \
+            --output="release/raycast-extensions-${RELEASE_TAG}-source.zip" HEAD
+          cd release
+          sha256sum ./*.zip > SHA256SUMS
+      - name: Write release notes
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          cat > release-notes.md <<'NOTES'
+          Raycast 扩展源码发布，支持 Windows / macOS。
+
+          - 时间戳转换：整数秒、毫秒与日期字符串互转，支持本地时区和 ISO 时区偏移。
+          - 当前时间每秒刷新，支持复制本地日期、UTC、秒及毫秒时间戳。
+          - Linux、Windows、macOS 均已通过构建、类型、Lint、测试和格式检查。
+
+          下载 `source.zip` 后解压，使用 Node.js 24 LTS，在仓库根目录执行：
+
+          ```sh
+          npm ci
+          npm run dev -- timestamp-converter
+          ```
+
+          Windows 请使用原生 PowerShell 和 Node.js。在 Raycast 中搜索“时间戳转换”。
+          源码包需要在本机导入 Raycast；CI 检查不包含 Raycast 图形界面与剪贴板测试。
+          NOTES
+          printf '\n版本：%s\n提交：%s\n' "$RELEASE_TAG" "$GITHUB_SHA" >> release-notes.md
+      - name: Create and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" release/*.zip release/SHA256SUMS \
+            --verify-tag --draft --title "$RELEASE_TAG" --notes-file release-notes.md
+          gh release edit "$RELEASE_TAG" --draft=false --latest
