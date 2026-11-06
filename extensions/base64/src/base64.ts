@@ -5,11 +5,7 @@ export type ConversionMode = "encode" | "decode";
 export type Base64Format = "base64" | "base64url";
 export type ConversionResult = { value: string } | { error: string };
 
-export function convertBase64(
-  input: string,
-  mode: ConversionMode,
-  format: Base64Format = "base64",
-): ConversionResult {
+export function convertBase64(input: string, mode: ConversionMode, format: Base64Format = "base64"): ConversionResult {
   if (mode === "encode") {
     return { value: Buffer.from(input, "utf8").toString(format) };
   }

@@ -1,10 +1,10 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "base64",
-  "title": "Base64 编解码",
-  "description": "UTF-8 文本与 Base64 互转，支持标准及 URL 安全格式",
+  "name": "base64-text-converter",
+  "title": "Base64 Text Converter",
+  "description": "Convert UTF-8 text to and from Base64 or Base64URL with live results and a Simplified Chinese interface.",
   "icon": "extension-icon.png",
-  "author": "your-raycast-handle",
+  "author": "sytuacmdyh",
   "platforms": [
     "macOS",
     "Windows"
@@ -17,8 +17,8 @@
   "commands": [
     {
       "name": "index",
-      "title": "Base64 编解码",
-      "description": "编码或解码 UTF-8 文本，支持 Base64URL 和复制结果",
+      "title": "Convert Base64 Text",
+      "description": "Encode or decode UTF-8 text, switch between Base64 and Base64URL, and copy the result.",
       "mode": "view",
       "keywords": [
         "base64",
@@ -26,7 +26,8 @@
         "encode",
         "decode",
         "编码",
-        "解码"
+        "解码",
+        "Base64 编解码"
       ]
     }
   ],
@@ -35,7 +36,9 @@
     "build": "ray build -e dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "node --experimental-strip-types --test tests/*.test.mjs"
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "store:check": "ray lint",
+    "publish": "ray publish"
   },
   "dependencies": {
     "@raycast/api": "2.11.1"

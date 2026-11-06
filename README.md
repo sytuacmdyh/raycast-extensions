@@ -36,7 +36,9 @@ npm run dev -- timestamp-converter
 npm run dev -- base64
 ```
 
-在 Raycast 中搜索 **Base64 编解码**；详见 [使用说明](extensions/base64/README.md)。
+在 Raycast 中搜索 **Convert Base64 Text** 或 **Base64 编解码**；详见 [使用说明](extensions/base64/README.md)。
+
+公共商店标识为 `base64-text-converter`，本地目录仍为 `extensions/base64`。审核准备材料和提交前待办见 [商店提交说明](docs/base64-store-submission.md)，目前尚未提交审核。
 
 ## 新建与管理扩展
 

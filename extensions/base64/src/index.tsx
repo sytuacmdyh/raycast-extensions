@@ -29,21 +29,11 @@ export default function Command() {
         </ActionPanel>
       }
     >
-      <Form.Dropdown
-        id="mode"
-        title="操作"
-        value={mode}
-        onChange={(value) => setMode(value as ConversionMode)}
-      >
+      <Form.Dropdown id="mode" title="操作" value={mode} onChange={(value) => setMode(value as ConversionMode)}>
         <Form.Dropdown.Item value="encode" title="编码：文本 → Base64" />
         <Form.Dropdown.Item value="decode" title="解码：Base64 → 文本" />
       </Form.Dropdown>
-      <Form.Dropdown
-        id="format"
-        title="格式"
-        value={format}
-        onChange={(value) => setFormat(value as Base64Format)}
-      >
+      <Form.Dropdown id="format" title="格式" value={format} onChange={(value) => setFormat(value as Base64Format)}>
         <Form.Dropdown.Item value="base64" title="标准 Base64（+/，保留填充）" />
         <Form.Dropdown.Item value="base64url" title="Base64URL（-_，省略填充）" />
       </Form.Dropdown>
