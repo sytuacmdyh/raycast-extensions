@@ -28,6 +28,16 @@ npm run dev -- timestamp-converter
 
 在 Raycast 中搜索 **时间戳转换**；详见 [使用说明](extensions/timestamp-converter/README.md)。
 
+## Base64 编解码
+
+`base64` 支持 UTF-8 文本编码、解码，提供标准 Base64 和 Base64URL 格式、即时结果和复制操作。
+
+```sh
+npm run dev -- base64
+```
+
+在 Raycast 中搜索 **Base64 编解码**；详见 [使用说明](extensions/base64/README.md)。
+
 ## 新建与管理扩展
 
 ```sh
@@ -55,6 +65,7 @@ npm run dev -- my-tool
 
 ```text
 extensions/
+  base64/              # UTF-8 文本与 Base64 / Base64URL 互转
   timestamp-converter/ # 时间戳与日期互转、当前时间实时更新
   personal-tools/       # 已创建的跨平台示例：显示并复制运行环境
     src/index.tsx       # 命令入口
